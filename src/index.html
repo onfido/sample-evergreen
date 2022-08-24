@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://assets.onfido.com/web-sdk-client/client.js"></script>
+    <script>
+        var handle = window.handle = Onfido.init({
+            workflowLinkId: "90086f53-d0a2-41bc-8202-177b99e935c9",
+            region: "EU"
+        })
+
+        addEventListener("userAnalyticsEvent", (e) => {
+            console.log("userAnalyticsEvent outside the frame", e);
+        })
+
+        handle.addEventListener("error", (e) => {
+            console.error("Error from handle", e)
+        })
+
+    </script>
+</body>
+</html>
