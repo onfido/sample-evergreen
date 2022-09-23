@@ -2,16 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Evergreen iframe Sample app</title>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="root" style="height: 100%;"></div>
     <script src="https://assets.onfido.com/web-sdk-client/client.js"></script>
     <script>
         var handle = window.handle = Onfido.init({
-            workflowLinkId: "90086f53-d0a2-41bc-8202-177b99e935c9",
-            region: "EU"
+            workflowLinkId: "<WORKFLOW LINK ID>",
+            region: "EU",
+            onComplete: (a) => {
+              console.log(a)
+            },
+            containerId: 'root',
+            css: "body {background: red}"
         })
+
+
+        /**
+         * Example for static SDK. non workflow options
+         *  <script>
+        window.handle = Onfido.init({
+            token: "<YOUR SDK TOKEN>",
+            onComplete: (outcome) => {
+                console.log("complete", outcome)
+            },
+            
+            steps: ["welcome", "face", "complete"],
+
+            css: `
+            html {
+                background: repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px);
+            }
+            `
+        })
+        */
 
         addEventListener("userAnalyticsEvent", (e) => {
             console.log("userAnalyticsEvent outside the frame", e);
